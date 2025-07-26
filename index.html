@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Personal Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    @keyframes fadeIn { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes float { 0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);} }
+    @keyframes rotate { from{transform:rotate(0);} to{transform:rotate(360deg);} }
+    @keyframes slideIn { from{transform:translateX(-100%);opacity:0;} to{transform:translateX(0);opacity:1;} }
+    @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);} }
+    @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+    @keyframes highlight {0%{color:#fff;}50%{color:#f1c40f;}100%{color:#fff;} }
+    @keyframes animatedText {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);} }
+    @keyframes textColorChange {0%{color:#fff;}50%{color:#f39c12;}100%{color:#fff;} }
+    @keyframes contactMeAnimation {0%{transform:scale(1);}50%{transform:scale(1.1);color:#f39c12;}100%{transform:scale(1);color:#fff;} }
+    @keyframes nameAnimation {0%{color:#f1c40f;}50%{color:#f39c12;}100%{color:#f1c40f;} }
+
+    body {
+      background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ba04315-ee20-456c-adc1-5df1752e014f.png') no-repeat center center fixed;
+      background-size:cover;
+      color:#fff;
+      line-height:1.6;
+      min-height:100vh;
+    }
+
+    header {
+      background:linear-gradient(135deg, rgba(15,20,30,0.95), rgba(25,35,55,0.9));
+      color:white;
+      text-align:center;
+      padding:5rem 0 4rem;
+      backdrop-filter: blur(16px);
+      border-bottom:1px solid rgba(255,255,255,0.15);
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      position:relative;
+      overflow:hidden;
+    }
+    header::before {
+      content:"";
+      position:absolute;
+      top:-50%;left:-50%;
+      width:200%;height:200%;
+      background:radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      animation:rotate 20s linear infinite;
+    }
+    header h1 {
+      font-size:2.5rem;
+      margin-bottom:0.5rem;
+      animation:nameAnimation 2s infinite;
+    }
+    header p {
+      font-size:1.2rem;
+      opacity:0.8;
+    }
+    .language-level {
+      font-size:1rem;
+      font-weight:600;
+      color:#fff;
+      background:linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      padding:0.5rem 1rem;
+      border-radius:50px;
+      animation:animatedText 1.5s infinite;
+      margin-top:0.5rem;
+      display:inline-block;
+    }
+
+    section {
+      padding:2rem;
+      max-width:1000px;
+      margin:2rem auto;
+      background:rgba(15,20,30,0.8);
+      backdrop-filter: blur(10px);
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 8px 32px rgba(0,0,0,0.37);
+    }
+    section h2 {
+      font-size:2rem;
+      margin-bottom:1.5rem;
+      color:#f1c40f;
+      border-bottom:2px solid #f1c40f;
+      padding-bottom:0.5rem;
+      animation:highlight 1.5s infinite;
+    }
+
+    .about {
+      display:flex;
+      align-items:center;
+      gap:2rem;
+      margin-top:2rem;
+    }
+    .about-img {
+      width:240px;height:240px;
+      border-radius:50%;
+      object-fit:cover;
+      border:8px solid rgba(75,95,125,0.3);
+      box-shadow:0 15px 30px rgba(0,0,0,0.2);
+      filter:grayscale(20%);
+      transition:all .5s;
+      animation:fadeIn 1s ease, float 6s ease-in-out infinite;
+    }
+    .about-img:hover {
+      filter:grayscale(0%);
+      transform:scale(1.05);
+    }
+    .about-text {
+      flex:1;
+      background:rgba(255,255,255,0.1);
+      border-radius:15px;
+      padding:1.5rem;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      animation:bounce 1s infinite;
+    }
+
+    .project-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+      gap:1.5rem;
+    }
+    .project-card {
+      background:linear-gradient(135deg, rgba(30,35,50,0.9), rgba(20,25,40,0.8));
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      transition:all .4s cubic-bezier(0.175,0.885,0.32,1.275);
+      border:1px solid rgba(255,255,255,0.1);
+      position:relative;
+      z-index:1;
+      animation:fadeIn .6s ease;
+    }
+    .project-card::before {
+      content:"";
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:linear-gradient(135deg, rgba(79,172,254,0.1), rgba(0,242,254,0.1));
+      opacity:0;
+      transition:opacity .3s ease;
+      z-index:-1;
+    }
+    .project-card:hover { transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.4); }
+    .project-card:hover::before { opacity:1; }
+
+    .project-info { padding:1rem; }
+    .project-info h3 {
+      margin-bottom:0.5rem;
+      color:#f39c12;
+      animation:textColorChange 1.5s infinite;
+    }
+
+    .skills-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+    .skill {
+      background:linear-gradient(45deg,#3a416f,#2c385e);
+      color:white;
+      padding:.5rem 1.5rem;
+      border-radius:20px;
+      font-size:.9rem;
+      backdrop-filter: blur(5px);
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background:linear-gradient(135deg,#1a2030,#0d121f);
+      color:white;
+      text-align:center;
+      padding:3rem 2rem;
+      position:relative;
+      overflow:hidden;
+    }
+    footer::before {
+      content:"";
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:3px;
+      background:linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    }
+    .contact-links {
+      display:inline-flex;
+      background:rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius:50px;
+      padding:.7rem 2rem;
+      margin-top:1.5rem;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+      transition:transform .3s;
+    }
+    .contact-links:hover { transform:translateY(-5px); }
+    .contact-links a {
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+      padding:.8rem 1.5rem;
+      background:linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+      border-radius:50px;
+      transition:all .3s;
+      box-shadow:0 4px 15px rgba(79,172,254,0.3);
+    }
+    .contact-links a:hover { box-shadow:0 6px 20px rgba(79,172,254,0.5);transform:scale(1.05); }
+
+    .footer-text {
+      margin-top:2rem;
+      font-size:.9rem;
+      color:rgba(255,255,255,0.7);
+      animation:contactMeAnimation 1.5s infinite;
+    }
+
+    @media(max-width:768px){
+      .about { flex-direction:column; text-align:center; }
+      .contact-links { flex-direction:column; gap:.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ahmed Reda Elwan</h1>
+    <p>Dental Student | Multidisciplinary Freelancer | Sound Engineer | Junior Designer &amp; Developer</p>
+    <div class="language-level">English Level: B2</div>
+  </header>
+
+  <section class="about-section">
+    <h2>Profile</h2>
+    <div class="about">
+      <img src="https://i.postimg.cc/Z91MXjph/IMG-20250726-205655.png" alt="Profile Picture" class="about-img">
+      <div class="about-text">
+        <p>I’m a passionate and versatile individual with hands‑on experience in several creative and technical fields. I enjoy learning, experimenting, and contributing to projects across design, technology, and education.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects">
+    <h2>Experience</h2>
+    <div class="project-grid">
+      <!-- تجربة التصميم -->
+      <div class="project-card"><div class="project-info"><h3>Graphic Design Experience</h3><p>Gained basic experience in creating visual content for games and websites. Developed a strong eye for detail and visual aesthetics.</p></div></div>
+      <!-- هندسة الصوت -->
+      <div class="project-card"><div class="project-info"><h3>Sound Engineering Background</h3><p>Worked for over 1.5 years in audio editing, mixing, and mastering—mainly using FL Studio. Managed multiple audio projects and developed familiarity with sound engineering tools.</p></div></div>
+      <!-- مشاريع برمجة -->
+      <div class="project-card"><div class="project-info"><h3>Programming Projects</h3><p>Worked on websites and avatar‑based chat games. Managed communities, led small teams, and resolved technical issues using basic programming knowledge.</p></div></div>
+      <!-- Freelancing -->
+      <div class="project-card"><div class="project-info"><h3>Freelancing</h3><p>Completed a 3‑month freelancing and marketing role for an educational platform, focusing on online promotion and content support.</p></div></div>
+      <!-- Data Analysis -->
+      <div class="project-card"><div class="project-info"><h3>Data Analysis</h3><p>Foundational understanding of data analysis using Excel and Google Sheets for effective decision‑making and reporting.</p></div></div>
+      <!-- Instructor -->
+      <div class="project-card"><div class="project-info"><h3>Instructor &amp; Mentor</h3><p>Mentored and trained young learners in programming, making complex topics easier to understand.</p></div></div>
+      <!-- Founder -->
+      <div class="project-card"><div class="project-info"><h3>Founder – Youth for Youth Group</h3><p>Founded a student‑led initiative supporting high school students with academic questions and collaborative volunteering activities.</p></div></div>
+    </div>
+  </section>
+
+  <section class="competitions">
+    <h2>Competitions &amp; Awards</h2>
+    <div class="project-grid">
+      <div class="project-card"><div class="project-info"><h3>Intel ISEF (International Science and Engineering Fair)</h3><p>Designed and built a passive water cooler that works without electricity.<br>Awarded a Certificate of Appreciation by the Science and Engineering Exhibition.</p></div></div>
+      <div class="project-card"><div class="project-info"><h3>IBB International Biology Competition</h3><p>Participated in the international biology competition.</p></div></div>
+      <div class="project-card"><div class="project-info"><h3>Member of Sports and Competitions Committee</h3><p>Contributed to organizing and supporting student activities and school events in high school.</p></div></div>
+      <div class="project-card"><div class="project-info"><h3>Awarded “Ideal Student” in high school</h3><p>Recognized for academic excellence, leadership, and positive conduct.</p></div></div>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>Education</h2>
+    <div class="skills-container">
+      <span class="skill">Bachelor of Dentistry – Deraya University (Ongoing)</span>
+      <span class="skill">Expected graduation: 2029</span>
+      <span class="skill">Maintaining a high academic record with distinction‑level grades.</span>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>Courses</h2>
+    <div class="skills-container">
+      <span class="skill">Introduction to Medical Research – Yale University (2025)</span>
+      <span class="skill">Data Analysis Basics – YouTube (2024)</span>
+      <span class="skill">Sound Engineering Course – YouTube (2020)</span>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Contact Me</h2>
+    <p>For inquiries or opportunities, feel free to reach out</p>
+    <div class="contact-links"><a href="mailto:ahmeddelwaan@gmail.com">Email</a></div>
+    <div class="footer-text">All rights reserved by Ahmed Reda Elwan</div>
+  </footer>
+</body>
+</html>
